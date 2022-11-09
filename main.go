@@ -2,7 +2,9 @@ package main
 
 // import "github.com/littletrainee/MahJong/ConsoleVersion/ChineseChess/32Tile/TwoPlayer/Handler"
 
-import "github.com/littletrainee/MahJong/ConsoleVersion/ChineseChess/32Tile/ThreePlayer/Handler"
+// import "github.com/littletrainee/MahJong/ConsoleVersion/ChineseChess/32Tile/ThreePlayer/Handler"
+
+import "github.com/littletrainee/MahJong/ConsoleVersion/ChineseChess/32Tile/FourPlayer/Handler"
 
 // import "github.com/littletrainee/MahJong/ConsoleVersion/Dice/TwoPlayer/Handler"
 

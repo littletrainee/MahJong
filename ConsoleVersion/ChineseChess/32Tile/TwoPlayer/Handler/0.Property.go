@@ -6,6 +6,7 @@ import (
 	"github.com/littletrainee/Delegate"
 	CV "github.com/littletrainee/MahJong/ConsoleVersion"
 	player "github.com/littletrainee/MahJong/ConsoleVersion/ChineseChess/32Tile/Player"
+	PW "github.com/littletrainee/MahJong/ConsoleVersion/ChineseChess/32Tile/PrintWin"
 	TT "github.com/littletrainee/MahJong/ConsoleVersion/ChineseChess/32Tile/TileType"
 	wall "github.com/littletrainee/MahJong/ConsoleVersion/ChineseChess/32Tile/Wall"
 )
@@ -18,4 +19,5 @@ type Handler struct {
 	wg               *sync.WaitGroup
 	Winner           string
 	tt               TT.TileType
+	PrintWin         PW.PrintWin
 }

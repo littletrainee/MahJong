@@ -3,8 +3,6 @@ package Handler
 import (
 	"fmt"
 
-	CV "github.com/littletrainee/MahJong/ConsoleVersion"
-	CC "github.com/littletrainee/MahJong/ConsoleVersion/ChineseChess"
 	player "github.com/littletrainee/MahJong/ConsoleVersion/ChineseChess/32Tile/Player"
 	"github.com/littletrainee/MahJong/ConsoleVersion/ChineseChess/32Tile/TileType"
 )
@@ -34,17 +32,8 @@ func (h *Handler) update(p1, p2 *player.Player) string {
 		// p1 Discard To Let p2 Ron
 		if p2.Iswin.Get() {
 			h.GameState.GameOn.Set(false)
-			fmt.Printf("%s is Ron.\nThe Hand is ", p2.Name.Get())
-			for i, v := range p2.Hand.Get() {
-				CV.PrintRedTextOrNot(v, CC.Tilemap)
-				if i != len(p2.Hand.Get())-1 {
-					fmt.Printf(", ")
-				}
-			}
-			fmt.Print("  The Last is ")
-			CV.PrintRedTextOrNot(riverlastelement, CC.Tilemap)
-			fmt.Printf("\n\n")
-			return h.Player2.Name.Get()
+			h.PrintWin.Assign(p2, p1)
+			return p2.Name.Get()
 		} else {
 			p2.Iswin.Set(false)
 			p2.IsTsumo.Set(false)
@@ -74,16 +63,7 @@ func (h *Handler) update(p1, p2 *player.Player) string {
 	} else {
 		h.GameState.GameOn.Set(false)
 		p1.IsTsumo.Set(true)
-		fmt.Printf("%s is Tsumo.\nThe Hand is ", p1.Name.Get())
-		for i, v := range p1.Hand.Get() {
-			CV.PrintRedTextOrNot(v, CC.Tilemap)
-			if i != len(p1.Hand.Get())-1 {
-				fmt.Printf(", ")
-			}
-		}
-		fmt.Print(" Win by ")
-		CV.PrintRedTextOrNot(p1.Hand.Get()[len(p1.Hand.Get())-1], CC.Tilemap)
-		fmt.Printf("\n\n")
+		h.PrintWin.Assign(p1, p2)
 		return p1.Name.Get()
 	}
 	return ""
@@ -104,6 +84,7 @@ func (h *Handler) Update() {
 			h.Winner = h.update(&h.Player2, &h.Player1)
 		}
 	}
+	h.PrintWin.PrintWinner()
 
 	switch h.Winner {
 	case h.Player1.Name.Get():

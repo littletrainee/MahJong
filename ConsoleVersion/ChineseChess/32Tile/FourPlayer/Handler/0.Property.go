@@ -12,12 +12,12 @@ import (
 )
 
 type Handler struct {
-	Wall                      wall.Wall
-	Player1, Player2, Player3 player.Player
-	Del                       Delegate.ParameterNoneAndReturnNone
-	GameState                 CV.GameState
-	wg                        *sync.WaitGroup
-	Winner                    string
-	tt                        TT.TileType
-	PrintWin                  PW.PrintWin
+	Wall                               wall.Wall
+	Player1, Player2, Player3, Player4 player.Player
+	Del                                Delegate.ParameterNoneAndReturnNone
+	GameState                          CV.GameState
+	wg                                 *sync.WaitGroup
+	Winner                             string
+	tt                                 TT.TileType
+	PrintWin                           PW.PrintWin
 }
