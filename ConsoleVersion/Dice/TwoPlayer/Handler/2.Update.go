@@ -1,0 +1,52 @@
+package Handler
+
+import (
+	"fmt"
+
+	player "github.com/littletrainee/MahJong/ConsoleVersion/Dice/TwoPlayer/Player"
+)
+
+func (h *Handler) update(p1, p2 *player.Player) {
+	// Check p1 Is Tsumo
+	p1.TsumoCheck()
+	if !p1.Iswin.Get() {
+		h.GameState.NextRound(p1.Name.Get())
+		p1.Discard()
+		p1.SortHand()
+		h.Del.Run()
+		h.wg.Add(1)
+		go p2.RonCheck(p1, h.wg)
+		h.wg.Wait()
+		if p2.Iswin.Get() {
+			h.GameState.GameOn.Set(false)
+			fmt.Printf("\n%s is Ron.\nThe Hand is %v.	Win By %v. ",
+				p2.Name.Get(), p2.Hand.Get(), p1.River.Get())
+		} else {
+			p2.Iswin.Set(false)
+			// Clear p2 Hand
+			p2.Hand.Set([]uint8{})
+			// And Redraw card
+			for i := 0; i < 5; i++ {
+				p2.DrawCard()
+			}
+			p2.SortHand()
+			h.GameState.TurnNext()
+		}
+	} else {
+		h.GameState.GameOn.Set(false)
+		fmt.Printf("%s is Tsumo.\nThe Hand is %v.	Win By %v. ",
+			p1.Name.Get(), p1.Hand.Get(), p1.Hand.Get()[len(p1.Hand.Get())-1])
+	}
+}
+
+func (h *Handler) Update() {
+	for h.GameState.GameOn.Get() {
+		h.Del.Run()
+		switch h.GameState.GameTurn.Get() {
+		case 0: // Player1
+			h.update(&h.Player1, &h.Player2)
+		case 1: // Player2
+			h.update(&h.Player2, &h.Player1)
+		}
+	}
+}
