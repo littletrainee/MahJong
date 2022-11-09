@@ -12,12 +12,14 @@ import (
 func askMeld() string {
 	var key string
 	fmt.Printf("Want to make meld?(y/n)")
-RenterMakeMeldChoice:
-	fmt.Scanf("%v\n", &key)
-	for key != "y" && key != "n" {
-		fmt.Print("Wrong Enter Please Renter:")
-		key = ""
-		goto RenterMakeMeldChoice
+	for {
+		fmt.Scanln(&key)
+		if key != "y" && key != "n" {
+			fmt.Print("Wrong Enter Please Renter:")
+			key = ""
+		} else {
+			break
+		}
 	}
 	return key
 }
@@ -43,7 +45,7 @@ func askwhichone() string {
 	var key string
 	fmt.Printf("Please Select Which One Want Make Meld:")
 RenterChoice:
-	fmt.Scanf("%v\n", &key)
+	fmt.Scanln(&key)
 	for key != "1" && key != "2" && key != "3" {
 		fmt.Print("Wrong Enter Please Renter:")
 		key = ""
@@ -55,21 +57,17 @@ RenterChoice:
 // Ask Make Meld Or Not
 func (p *Player) AskMakeMeldAndChoose() int {
 	var (
-		key          string   //= "y"
+		key          string
 		probablymeld []string = p.HasMeld.Get()
 		choose       int
 	)
-MakeMeldOrNot:
+	// MakeMeldOrNot:
 	key = askMeld()
 	if key == "y" {
 		if len(probablymeld) > 1 { // more than 1 meld
 			printprobablymeld(probablymeld)
 			key = askwhichone()
-			if key != "r" { // is choose
-				choose, _ = strconv.Atoi(key)
-			} else { // changed slef mind
-				goto MakeMeldOrNot
-			}
+			choose, _ = strconv.Atoi(key)
 		} else { // only 1 meld
 			choose = 1
 		}

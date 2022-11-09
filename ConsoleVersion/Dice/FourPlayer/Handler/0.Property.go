@@ -5,7 +5,7 @@ import (
 
 	"github.com/littletrainee/Delegate"
 	CV "github.com/littletrainee/MahJong/ConsoleVersion"
-	player "github.com/littletrainee/MahJong/ConsoleVersion/Dice/FourPlayer/Player"
+	player "github.com/littletrainee/MahJong/ConsoleVersion/Dice/Player"
 )
 
 type Handler struct {
@@ -13,5 +13,4 @@ type Handler struct {
 	Del                                Delegate.ParameterNoneAndReturnNone
 	GameState                          CV.GameState
 	wg                                 *sync.WaitGroup
-	Winner                             string
 }

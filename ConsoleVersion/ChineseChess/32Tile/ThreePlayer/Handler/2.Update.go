@@ -9,7 +9,7 @@ import (
 	"github.com/littletrainee/MahJong/ConsoleVersion/ChineseChess/32Tile/TileType"
 )
 
-func (h *Handler) update(p1, p2 *player.Player) string {
+func (h *Handler) update(p1, p2, p3 *player.Player) string {
 	// Check p1 Is Tsumo
 	p1.TsumoCheck()
 	if !p1.Iswin.Get() {
@@ -27,12 +27,26 @@ func (h *Handler) update(p1, p2 *player.Player) string {
 			p1.SortHand()
 		}
 		h.Del.Run()
-		h.wg.Add(1)
+		h.wg.Add(2)
 		go p2.RonCheck(p1, h.wg)
+		go p3.RonCheck(p1, h.wg)
 		h.wg.Wait()
 		riverlastelement := p1.River.Get()[len(p1.River.Get())-1]
-		// p1 Discard To Let p2 Ron
-		if p2.Iswin.Get() {
+		// p1 Discard To Let p3 Ron
+		if p3.Iswin.Get() {
+			h.GameState.GameOn.Set(false)
+			fmt.Printf("%s is Ron.\nThe Hand is ", p3.Name.Get())
+			for i, v := range p3.Hand.Get() {
+				CV.PrintRedTextOrNot(v, CC.Tilemap)
+				if i != len(p3.Hand.Get())-1 {
+					fmt.Printf(", ")
+				}
+			}
+			fmt.Print("  The Last is ")
+			CV.PrintRedTextOrNot(riverlastelement, CC.Tilemap)
+			fmt.Printf("\n\n")
+			return p3.Name.Get()
+		} else if p2.Iswin.Get() {
 			h.GameState.GameOn.Set(false)
 			fmt.Printf("%s is Ron.\nThe Hand is ", p2.Name.Get())
 			for i, v := range p2.Hand.Get() {
@@ -44,10 +58,12 @@ func (h *Handler) update(p1, p2 *player.Player) string {
 			fmt.Print("  The Last is ")
 			CV.PrintRedTextOrNot(riverlastelement, CC.Tilemap)
 			fmt.Printf("\n\n")
-			return h.Player2.Name.Get()
+			return p2.Name.Get()
 		} else {
 			p2.Iswin.Set(false)
+			p3.Iswin.Set(false)
 			p2.IsTsumo.Set(false)
+			p3.IsTsumo.Set(false)
 			if !p2.TenPai.Get() {
 				p2.CheckChi(riverlastelement) // check has chi meld
 				if p2.HasMeld.Get() != nil {
@@ -99,9 +115,11 @@ func (h *Handler) Update() {
 		h.Del.Run()
 		switch h.GameState.GameTurn.Get() {
 		case 0: // Player1
-			h.Winner = h.update(&h.Player1, &h.Player2)
+			h.Winner = h.update(&h.Player1, &h.Player2, &h.Player3)
 		case 1: // Player2
-			h.Winner = h.update(&h.Player2, &h.Player1)
+			h.Winner = h.update(&h.Player2, &h.Player3, &h.Player1)
+		case 2:
+			h.Winner = h.update(&h.Player3, &h.Player1, &h.Player2)
 		}
 	}
 
@@ -110,6 +128,8 @@ func (h *Handler) Update() {
 		h.tt.Create(&h.Player1, &h.Player2, &h.Wall, &h.GameState)
 	case h.Player2.Name.Get():
 		h.tt.Create(&h.Player2, &h.Player1, &h.Wall, &h.GameState)
+	case h.Player3.Name.Get():
+		h.tt.Create(&h.Player3, &h.Player2, &h.Wall, &h.GameState)
 	default:
 		h.tt = TileType.TileType{}
 	}

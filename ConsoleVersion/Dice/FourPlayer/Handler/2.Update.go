@@ -3,7 +3,7 @@ package Handler
 import (
 	"fmt"
 
-	player "github.com/littletrainee/MahJong/ConsoleVersion/Dice/FourPlayer/Player"
+	player "github.com/littletrainee/MahJong/ConsoleVersion/Dice/Player"
 )
 
 func (h *Handler) update(p1, p2, p3, p4 *player.Player) {

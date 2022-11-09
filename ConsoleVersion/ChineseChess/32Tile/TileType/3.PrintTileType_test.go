@@ -4,8 +4,8 @@ import (
 	"testing"
 
 	CV "github.com/littletrainee/MahJong/ConsoleVersion"
-	"github.com/littletrainee/MahJong/ConsoleVersion/ChineseChess/32Tile/TwoPlayer/Player"
-	"github.com/littletrainee/MahJong/ConsoleVersion/ChineseChess/32Tile/TwoPlayer/Wall"
+	"github.com/littletrainee/MahJong/ConsoleVersion/ChineseChess/32Tile/Player"
+	"github.com/littletrainee/MahJong/ConsoleVersion/ChineseChess/32Tile/Wall"
 )
 
 func TestPrintTileType(t *testing.T) {

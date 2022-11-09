@@ -29,9 +29,9 @@ func (p *Player) PrintPlayer() {
 				fmt.Printf(" ]")
 			}
 		}
-		fmt.Printf("\n")
 	}
-	fmt.Printf("\n%s's River: ", p.Name.Get())
+	fmt.Println()
+	fmt.Printf("%s's River: ", p.Name.Get())
 	for i, v := range p.River.Get() {
 		CV.PrintRedTextOrNot(v, CC.Tilemap)
 		if i != len(p.River.Get())-1 {
@@ -40,5 +40,5 @@ func (p *Player) PrintPlayer() {
 			fmt.Println()
 		}
 	}
-	fmt.Printf("\n")
+	fmt.Printf("\n\n")
 }

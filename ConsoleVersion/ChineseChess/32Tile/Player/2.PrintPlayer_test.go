@@ -3,7 +3,7 @@ package Player
 import (
 	"testing"
 
-	wall "github.com/littletrainee/MahJong/ConsoleVersion/ChineseChess/32Tile/TwoPlayer/Wall"
+	wall "github.com/littletrainee/MahJong/ConsoleVersion/ChineseChess/32Tile/Wall"
 )
 
 func TestPrintPlayer(t *testing.T) {

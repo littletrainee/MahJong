@@ -1,6 +1,6 @@
 package Player
 
-import wall "github.com/littletrainee/MahJong/ConsoleVersion/ChineseChess/32Tile/TwoPlayer/Wall"
+import wall "github.com/littletrainee/MahJong/ConsoleVersion/ChineseChess/32Tile/Wall"
 
 // draw card from wall
 func (p *Player) DrawCard(wall *wall.Wall) {

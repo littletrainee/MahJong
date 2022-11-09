@@ -19,7 +19,7 @@ func (g *GameState) SetMaxPlayer(c int) {
 
 func (g *GameState) TurnNext() {
 	temp := g.GameTurn.Get()
-	if temp != g.maxplayer.Get()-1 {
+	if temp < g.maxplayer.Get() {
 		temp++
 	} else {
 		temp = 0

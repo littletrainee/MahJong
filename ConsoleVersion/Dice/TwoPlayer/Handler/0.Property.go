@@ -5,7 +5,7 @@ import (
 
 	"github.com/littletrainee/Delegate"
 	CV "github.com/littletrainee/MahJong/ConsoleVersion"
-	player "github.com/littletrainee/MahJong/ConsoleVersion/Dice/TwoPlayer/Player"
+	player "github.com/littletrainee/MahJong/ConsoleVersion/Dice/Player"
 )
 
 type Handler struct {
