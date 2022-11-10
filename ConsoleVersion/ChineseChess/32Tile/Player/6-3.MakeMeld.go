@@ -14,14 +14,14 @@ func (p *Player) MakeMeld(choice int, otherplayer *Player) {
 	)
 	// append meld to tempmeld
 	tempmeld = append(tempmeld, tempmeldtarget[:2])                 // add first element of hand to tempmeld
-	index = slices.FindIndexOfElement(tempmeldtarget[:2], temphand) //find first element index in hand
+	index = slices.FindIndexOfElement(temphand, tempmeldtarget[:2]) //find first element index in hand
 	temphand = append(temphand[:index], temphand[index+1:]...)      // remove first element from hand
 
 	tempmeld = append(tempmeld, otherplayerriver[len(otherplayerriver)-1]) // add last element of river to tempmeld
 	otherplayerriver = otherplayerriver[:len(otherplayerriver)-1]          // remove last element form river
 
 	tempmeld = append(tempmeld, tempmeldtarget[2:])                 // add second element of hand to tempmeld
-	index = slices.FindIndexOfElement(tempmeldtarget[2:], temphand) // find second element index in hand
+	index = slices.FindIndexOfElement(temphand, tempmeldtarget[2:]) // find second element index in hand
 	temphand = append(temphand[:index], temphand[index+1:]...)      // remove second element from hand
 
 	tempmeldlist = append(tempmeldlist, tempmeld) // Add tempmeld to tempmeldlist

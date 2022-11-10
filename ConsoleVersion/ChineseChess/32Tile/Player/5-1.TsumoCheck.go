@@ -23,10 +23,10 @@ func (p *Player) TsumoCheck() {
 	temphand = tempplayer.Hand.Get()
 
 	probablyEye := findProbablyEye(temphand)
-	if slices.ContainsElement("1b", probablyEye) && slices.ContainsElement("1r", probablyEye) {
+	if slices.ContainsElement(probablyEye, "1b") && slices.ContainsElement(probablyEye, "1r") {
 		anothertemp := temphand
 		remove_eye_hand := removeSpecialEye("1b", "1r", anothertemp)
-		Ismeld := ismeld(remove_eye_hand)
+		Ismeld := Ismeld(remove_eye_hand)
 		if Ismeld == "triple" || Ismeld == "sequence" {
 			// fmt.Printf("\n%s is Tsumo.\n The Hand is %v", p.Name.Get(), p.Hand.Get())
 			iswin = true
@@ -37,7 +37,7 @@ func (p *Player) TsumoCheck() {
 		for _, v := range probablyEye {
 			anothertemp := temphand
 			remove_eye_hand := removeEye(v, anothertemp)
-			Ismeld := ismeld(remove_eye_hand)
+			Ismeld := Ismeld(remove_eye_hand)
 			if Ismeld == "triple" || Ismeld == "sequence" {
 				iswin = true
 				break

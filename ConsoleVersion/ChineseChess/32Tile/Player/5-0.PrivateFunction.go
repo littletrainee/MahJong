@@ -7,14 +7,14 @@ func findProbablyEye(hand []string) []string {
 	var probablyeye []string
 	for i := range hand {
 		if i != len(hand)-1 && hand[i] == hand[i+1] {
-			if slices.ContainsElement(hand[i], probablyeye) == false {
+			if slices.ContainsElement(probablyeye, hand[i]) == false {
 				probablyeye = append(probablyeye, hand[i])
 			}
 		}
 	}
 	// special eye for 32 tile
 	if len(probablyeye) == 0 {
-		if slices.ContainsElement("1b", hand) && slices.ContainsElement("1r", hand) {
+		if slices.ContainsElement(hand, "1b") && slices.ContainsElement(hand, "1r") {
 			probablyeye = append(probablyeye, "1b", "1r")
 		}
 	}
@@ -26,7 +26,7 @@ func removeEye(targeteye string, orginal []string) []string {
 	temp := make([]string, len(orginal))
 	copy(temp, orginal)
 	for i := 0; i < 2; i++ {
-		index := slices.FindIndexOfElement(targeteye, temp)
+		index := slices.FindIndexOfElement(temp, targeteye)
 		temp = append(temp[:index], temp[index+1:]...)
 	}
 	return temp
@@ -36,15 +36,15 @@ func removeEye(targeteye string, orginal []string) []string {
 func removeSpecialEye(first, second string, orginal []string) []string {
 	temp := make([]string, len(orginal))
 	copy(temp, orginal)
-	index := slices.FindIndexOfElement(first, temp)
+	index := slices.FindIndexOfElement(temp, first)
 	temp = append(temp[:index], temp[index+1:]...)
-	index = slices.FindIndexOfElement(second, temp)
+	index = slices.FindIndexOfElement(temp, second)
 	temp = append(temp[:index], temp[index+1:]...)
 	return temp
 }
 
 // Check meld
-func ismeld(meld []string) string {
+func Ismeld(meld []string) string {
 	meld1, meld2, meld3 := meld[0], meld[1], meld[2]
 	if meld1 == meld2 && meld2 == meld3 {
 		return "triple"

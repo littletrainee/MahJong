@@ -31,10 +31,10 @@ func (p *Player) RonCheck(otherplayer *Player, wg *sync.WaitGroup) {
 	// find probably eye
 	probablyEye := findProbablyEye(temphand)
 	// contain "1b" and "1r"
-	if slices.ContainsElement("1b", probablyEye) && slices.ContainsElement("1r", probablyEye) {
+	if slices.ContainsElement(probablyEye, "1b") && slices.ContainsElement(probablyEye, "1r") {
 		anothertemp := temphand
 		remove_eye_hand := removeSpecialEye("1b", "1r", anothertemp)
-		Ismeld := ismeld(remove_eye_hand)
+		Ismeld := Ismeld(remove_eye_hand)
 		if Ismeld == "triple" || Ismeld == "sequence" {
 			iswin = true
 		} else {
@@ -44,7 +44,7 @@ func (p *Player) RonCheck(otherplayer *Player, wg *sync.WaitGroup) {
 		for _, v := range probablyEye {
 			anothertemp := temphand
 			remove_eye_hand := removeEye(v, anothertemp)
-			Ismeld := ismeld(remove_eye_hand)
+			Ismeld := Ismeld(remove_eye_hand)
 			if Ismeld == "triple" || Ismeld == "sequence" {
 				iswin = true
 				break

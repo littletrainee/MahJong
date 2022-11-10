@@ -8,7 +8,7 @@ import (
 
 func (t *TileType) differentgeneralbeenpair() {
 	temp := t.hand.Get()
-	if slices.ContainsElement("1b", temp) && slices.ContainsElement("1r", temp) {
+	if slices.ContainsElement(temp, "1b") && slices.ContainsElement(temp, "1r") {
 		v := t.total.Get()
 		v += 2
 		t.total.Set(v)

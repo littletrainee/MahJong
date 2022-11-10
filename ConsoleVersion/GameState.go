@@ -10,16 +10,16 @@ type GameState struct {
 	GameOn    GetSet.Type[bool]
 	GameTurn  GetSet.Type[uint8]
 	GameRound GetSet.Type[uint8]
-	maxplayer GetSet.Type[uint8]
+	Maxplayer GetSet.Type[uint8]
 }
 
 func (g *GameState) SetMaxPlayer(c int) {
-	g.maxplayer.Set(uint8(c))
+	g.Maxplayer.Set(uint8(c))
 }
 
 func (g *GameState) TurnNext() {
 	temp := g.GameTurn.Get()
-	if temp < g.maxplayer.Get()-1 {
+	if temp < g.Maxplayer.Get()-1 {
 		temp++
 	} else {
 		temp = 0

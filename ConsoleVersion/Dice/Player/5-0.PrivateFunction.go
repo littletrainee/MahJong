@@ -7,7 +7,7 @@ func findProbablyEye(hand []uint8) []uint8 {
 	var probablyeye []uint8
 	for i := range hand {
 		if i != len(hand)-1 && hand[i] == hand[i+1] {
-			if slices.ContainsElement(hand[i], probablyeye) == false {
+			if slices.ContainsElement(probablyeye, hand[i]) == false {
 				probablyeye = append(probablyeye, hand[i])
 			}
 		}
@@ -20,7 +20,7 @@ func removeEye(targeteye uint8, orginal []uint8) []uint8 {
 	temp := make([]uint8, len(orginal))
 	copy(temp, orginal)
 	for i := 0; i < 2; i++ {
-		index := slices.FindIndexOfElement(targeteye, temp)
+		index := slices.FindIndexOfElement(temp, targeteye)
 		temp = append(temp[:index], temp[index+1:]...)
 	}
 	return temp
