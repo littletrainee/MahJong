@@ -15,6 +15,7 @@ func (tt *TileType) AllPaired() {
 	)
 	temp.Set(tt.hand.Get())
 	appendfrommeld(&temp, &tt.meld)
+	sortHand(&temp)
 	temp.Set(Player.RemoveEye(tt.eye.Get(), temp.Get()))
 	if Player.Ismeld(temp.Get()[:3]) == "triple" && Player.Ismeld(temp.Get()[3:]) == "triple" {
 		v := tt.total.Get()

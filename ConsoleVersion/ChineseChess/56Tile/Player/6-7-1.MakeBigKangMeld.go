@@ -38,6 +38,7 @@ func (p *Player) MakeBigKangMeld(otherplayer *Player, w *Wall.Wall) {
 
 	// Set each value
 	p.HasPongMeld.Set(false)
+	p.HasKangMeld.Set(false)
 	w.Wall.Set(wall)
 	otherplayer.River.Set(otherplayerriver)
 	p.Hand.Set(temphand)

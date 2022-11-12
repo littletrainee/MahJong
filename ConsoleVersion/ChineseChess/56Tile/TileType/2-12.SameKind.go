@@ -1,6 +1,10 @@
 package TileType
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/littletrainee/GetSet"
+)
 
 func tilekind(temp []string, targetkind rune) bool {
 	for _, v := range temp {
@@ -11,8 +15,10 @@ func tilekind(temp []string, targetkind rune) bool {
 	return true
 }
 func (t *TileType) SameKind() {
-	temp := t.hand.Get()
-	if tilekind(temp, 'b') || tilekind(temp, 'r') {
+	var temp GetSet.Type[[]string]
+	temp.Set(t.hand.Get())
+	appendfrommeld(&temp, &t.meld)
+	if tilekind(temp.Get(), 'b') || tilekind(temp.Get(), 'r') {
 		v := t.total.Get()
 		v += 1
 		t.total.Set(v)

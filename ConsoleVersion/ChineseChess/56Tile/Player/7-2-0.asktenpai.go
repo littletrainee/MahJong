@@ -16,8 +16,3 @@ func asktenpai() string {
 	}
 	return key
 }
-func (p *Player) AskDeclareTenPai() {
-	if asktenpai() == "y" {
-		p.TenPai.Set(true)
-	}
-}

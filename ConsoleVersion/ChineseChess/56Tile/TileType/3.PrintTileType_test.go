@@ -15,7 +15,7 @@ func TestPrintTileType(t *testing.T) {
 		w      Wall.Wall
 		gs     CV.GameState
 	)
-	p1.Hand.Set([]string{"7r", "7r", "7r", "1b", "1r"})
+	p1.Hand.Set([]string{"1r", "1r", "2r", "2b", "3r", "3r", "4r", "4r"})
 	p1.IsTsumo.Set(true)
 	T.Create(&p1, &p2, &w, &gs)
 	T.PrintTileType()

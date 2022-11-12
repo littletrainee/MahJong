@@ -5,24 +5,19 @@ import (
 	"github.com/littletrainee/slices"
 )
 
-func probablywin(temp []string) bool {
-	var tempplayer Player
-	tempplayer.Hand.Set(temp)
-	tempplayer.TsumoCheck()
-	return tempplayer.Iswin.Get()
-}
-
 func (p *Player) TenPaiCheck() []string {
 	var (
 		temphand           []string = p.Hand.Get()
+		tempplayer         Player
 		cloneforpopone     []string
 		removeonefromclone []string
 		probablywintile    []string
 	)
-	// check temp hand is 5
-	if len(p.Meld.Get()) != 0 {
-		temphand = append(temphand, p.Meld.Get()[0]...)
-	}
+
+	// Sort temphand
+	tempplayer.Hand.Set(temphand)
+	tempplayer.SortHand()
+	temphand = tempplayer.Hand.Get()
 
 	// pop one by one to check is tenpai
 	for i := range temphand {
@@ -40,7 +35,7 @@ func (p *Player) TenPaiCheck() []string {
 			// clone from cloneforpopone to removeoonefromclone[4]
 			copy(removeonefromclone, cloneforpopone)
 			removeonefromclone = append(removeonefromclone, probablytarget)
-			if probablywin(removeonefromclone) {
+			if probablywin(removeonefromclone, p.Meld.Get()) {
 				if !slices.ContainsElement(probablywintile, probablytarget) {
 					probablywintile = append(probablywintile, probablytarget)
 				}

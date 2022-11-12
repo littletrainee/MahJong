@@ -28,6 +28,7 @@ func (p *Player) MakePongMeld(otherplayer *Player) {
 
 	// Set each value
 	p.HasPongMeld.Set(false)
+	p.HasKangMeld.Set(false)
 	otherplayer.River.Set(otherplayerriver)
 	p.Hand.Set(temphand)
 	p.Meld.Set(tempmeldlist)

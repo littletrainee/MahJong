@@ -23,4 +23,5 @@ type Player struct {
 	WinOnTheWallTail    GetSet.Type[bool]
 	Bookmaker           GetSet.Type[bool]
 	ContinueToBookmaker GetSet.Type[uint8]
+	CodeNumber          GetSet.Type[uint8]
 }

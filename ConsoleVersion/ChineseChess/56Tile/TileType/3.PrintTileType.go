@@ -13,12 +13,15 @@ func (tt *TileType) PrintTileType() {
 	tt.ConcealedAndTsumo()
 	tt.AllOrHalfRequire()
 	tt.WinOnLastTile()
-	tt.FourPair()
 	tt.SameKind()
-	tt.TwoKang()
-	tt.AllPaired()
-	tt.TwoDragonHug()
-	tt.OneDragon()
+	if tt.eye.Get() != "4pair" {
+		tt.AllPaired()
+		tt.TwoKang()
+		tt.TwoDragonHug()
+		tt.OneDragon()
+	} else {
+		tt.FourPair()
+	}
 	fmt.Println("===============")
 	fmt.Printf("共：        %d台\n", tt.total.Get())
 }

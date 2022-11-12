@@ -6,7 +6,6 @@ import (
 
 	"github.com/littletrainee/MahJong/ConsoleVersion/ChineseChess/56Tile/Player"
 	"github.com/littletrainee/MahJong/ConsoleVersion/ChineseChess/56Tile/TileType"
-	// "github.com/littletrainee/MahJong/ConsoleVersion/ChineseChess/56Tile/TileType"
 )
 
 func checkPongAndKang(otherplayerriver string, thisplayer *Player.Player, wg *sync.WaitGroup) {
@@ -80,7 +79,7 @@ func (h *Handler) update(p1, p2 *Player.Player) string {
 		TurnToNextPlayer:
 			// check player can concealed or small kang
 			for {
-				p2.TsumoCheck()
+				// p2.TsumoCheck()
 				if p2.Iswin.Get() {
 					h.GameState.GameOn.Set(false)
 					p2.IsTsumo.Set(true)

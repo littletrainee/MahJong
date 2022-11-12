@@ -50,3 +50,94 @@ func Ismeld(meld []string) string {
 		return "None"
 	}
 }
+
+func isfourpair(temphand []string) bool {
+	var returnvalue bool
+	// if temphand[0] ==temphand[1]
+	for i := 0; i < len(temphand); i += 2 {
+		if temphand[i] != temphand[i+1] {
+			returnvalue = false
+			break
+		} else if i == 6 {
+			returnvalue = true
+		}
+	}
+	return returnvalue
+}
+
+func nomeld(temphand []string) (bool, string) {
+	var (
+		iswin bool
+		eye   string
+	)
+	if isfourpair(temphand) {
+		iswin = true
+		eye = "4pair"
+	} else {
+		// find probably eye
+		probablyEye := findProbablyEye(temphand)
+		for _, v := range probablyEye {
+			anothertemp := make([]string, len(temphand))
+			copy(anothertemp, temphand)
+			remove_eye_hand := RemoveEye(v, anothertemp)
+			meld1 := remove_eye_hand[:3]
+			meld2 := remove_eye_hand[3:]
+			Ismeld1 := Ismeld(meld1)
+			Ismeld2 := Ismeld(meld2)
+			if (Ismeld1 == "triple" || Ismeld1 == "sequence") && (Ismeld2 == "triple" || Ismeld2 == "sequence") {
+				iswin = true
+				eye = v
+				break
+			} else {
+				iswin = false // set tempreturnvalue to false
+			}
+		}
+	}
+	return iswin, eye
+}
+
+func onemeld(temphand []string) (bool, string) {
+	var (
+		iswin bool
+		eye   string
+	)
+	// find probably eye
+	probablyEye := findProbablyEye(temphand)
+	for _, v := range probablyEye {
+		anothertemp := make([]string, len(temphand))
+		copy(anothertemp, temphand)
+		remove_eye_hand := RemoveEye(v, anothertemp)
+		ismeld := Ismeld(remove_eye_hand)
+		if ismeld == "triple" || ismeld == "sequence" {
+			iswin = true
+			eye = v
+			break
+		} else {
+			iswin = false // set tempreturnvalue to false
+		}
+	}
+	return iswin, eye
+}
+
+func twomeld(temphand []string) (bool, string) {
+	return temphand[0] == temphand[1], temphand[0]
+}
+
+func endgame(temphand []string, meld [][]string) (bool, string) {
+	var tempplayer Player
+	// sort temphand
+	tempplayer.Hand.Set(temphand)
+	tempplayer.SortHand()
+	temphand = tempplayer.Hand.Get()
+
+	switch len(meld) {
+	case 0: // is concealed
+		return nomeld(temphand)
+	case 1:
+		return onemeld(temphand)
+	case 2:
+		return twomeld(temphand)
+	default:
+		return false, ""
+	}
+}

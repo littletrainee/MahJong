@@ -13,28 +13,32 @@ type GameState struct {
 	Maxplayer GetSet.Type[uint8]
 }
 
-func (g *GameState) SetMaxPlayer(c int) {
-	g.Maxplayer.Set(uint8(c))
+func (gs *GameState) SetMaxPlayer(c int) {
+	gs.Maxplayer.Set(uint8(c))
 }
 
-func (g *GameState) TurnNext() {
-	temp := g.GameTurn.Get()
-	if temp < g.Maxplayer.Get()-1 {
+func (gs *GameState) TurnNext() {
+	temp := gs.GameTurn.Get()
+	if temp < gs.Maxplayer.Get()-1 {
 		temp++
 	} else {
 		temp = 0
 	}
-	g.GameTurn.Set(temp)
+	gs.GameTurn.Set(temp)
 }
 
-func (g *GameState) NextRound(name string) {
+func (gs *GameState) TurnTargetPlayer(target uint8) {
+	gs.GameTurn.Set(target - 1)
+}
+
+func (gs *GameState) NextRound(name string) {
 	if name == "Player 1" {
-		i := g.GameRound.Get()
+		i := gs.GameRound.Get()
 		i++
-		g.GameRound.Set(i)
+		gs.GameRound.Set(i)
 	}
 }
 
-func (g *GameState) PrintRound() {
-	fmt.Printf("第 %d 巡\n", g.GameRound.Get())
+func (gs *GameState) PrintRound() {
+	fmt.Printf("第 %d 巡\n", gs.GameRound.Get())
 }

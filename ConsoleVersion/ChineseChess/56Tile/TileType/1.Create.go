@@ -15,14 +15,16 @@ func sortHand(hand *GetSet.Type[[]string]) {
 }
 
 func (tt *TileType) Create(thisplayer, otherplayer *Player.Player, wall *Wall.Wall, gamestate *CV.GameState) {
-	if thisplayer.IsConcealed.Get() {
-		tt.hand.Set(thisplayer.Hand.Get())
-	} else {
-		tt.meld.Set(thisplayer.Meld.Get())
+	temp := thisplayer.Hand.Get()
+	if len(thisplayer.Meld.Get()) != 0 {
+		for _, meld := range thisplayer.Meld.Get() {
+			temp = append(temp, meld[:3]...)
+		}
 	}
-	if len(thisplayer.Hand.Get()) != 8 || len(thisplayer.Hand.Get()) != 5 || len(thisplayer.Hand.Get()) != 2 {
-		tt.hand.Set(append(tt.hand.Get(), otherplayer.River.Get()[len(otherplayer.River.Get())-1]))
+	if len(temp) != 8 && len(temp) != 5 && len(temp) != 2 {
+		temp = append(temp, otherplayer.River.Get()[len(otherplayer.River.Get())-1])
 	}
+	tt.hand.Set(temp)
 	sortHand(&tt.hand)
 	tt.gameround.Set(gamestate.GameRound.Get())
 	tt.gameturn.Set(gamestate.GameTurn.Get())
