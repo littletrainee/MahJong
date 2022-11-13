@@ -14,7 +14,6 @@ func (tt *TileType) OneDragon() {
 	temphand.Set(tt.hand.Get())
 	appendfrommeld(&temphand, &tt.meld)
 	sortHand(&temphand)
-	fmt.Println(CC.Tile_key)
 
 	for _, target := range [][]string{
 		append(CC.Tile_key[6:], CC.Tile_key[13]),

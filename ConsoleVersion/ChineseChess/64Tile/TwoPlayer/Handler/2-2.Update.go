@@ -19,7 +19,6 @@ func (h *Handler) Update() {
 			h.Winner = h.update(&h.Player1, &h.Player2)
 		case 1: // Player2
 			h.Winner = h.update(&h.Player2, &h.Player1)
-
 		}
 	}
 

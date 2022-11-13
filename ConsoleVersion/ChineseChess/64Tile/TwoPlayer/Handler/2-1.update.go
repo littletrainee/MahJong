@@ -30,7 +30,6 @@ func (h *Handler) update(p1, p2 *Player.Player) string {
 		} else {
 			// check p4, p3 and p2 has pong or kang meld
 			if !p2.TenPai.Get() {
-				h.wg.Add(1)
 				go checkPongAndKang(riverlastelement, p2, h.wg)
 			}
 			h.wg.Wait()

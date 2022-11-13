@@ -28,8 +28,9 @@ func isonedragon(temphand, targettype []string) bool {
 }
 
 func isfivesoldier(temp []string, eye string) bool {
-	if index := slices.FindIndexOfElement(temp, eye); index != -1 {
+	if slices.ContainsElement(temp, eye) && slices.CountNumber(temp, eye) == 5 {
 		for i := 0; i < 5; i++ {
+			index := slices.FindIndexOfElement(temp, eye)
 			temp = append(temp[:index], temp[index+1:]...)
 		}
 		if Player.Ismeld(temp) == "triple" || Player.Ismeld(temp) == "sequence" {

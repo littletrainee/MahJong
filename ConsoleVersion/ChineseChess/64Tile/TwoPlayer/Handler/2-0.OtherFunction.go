@@ -7,6 +7,7 @@ import (
 )
 
 func checkPongAndKang(otherplayerriver string, thisplayer *Player.Player, wg *sync.WaitGroup) {
+	wg.Add(1)
 	// pong
 	thisplayer.CheckPong(otherplayerriver, wg)
 	if thisplayer.HasPongMeld.Get() {
