@@ -13,12 +13,6 @@ func (w *Wall) PrintWall() {
 	fmt.Printf("%s: ", w.Name.Get())
 	for _, v := range w.Wall.Get() {
 		count++
-		// if v[1] == 'r' {
-		// 	// color.RedString(Tilemap.Get()[v])
-		// 	RedString.Printf("%v", CCM32TCVBTP.Tilemap.Get()[v])
-		// } else {
-		// 	fmt.Printf("%v", CCM32TCVBTP.Tilemap.Get()[v])
-		// }
 		CV.PrintRedTextOrNot(v, CC.Tilemap)
 		if count != last {
 			fmt.Printf(", ")

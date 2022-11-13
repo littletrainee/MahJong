@@ -10,7 +10,9 @@ package main
 
 // import "github.com/littletrainee/MahJong/ConsoleVersion/ChineseChess/56Tile/TwoPlayer/Handler"
 // import "github.com/littletrainee/MahJong/ConsoleVersion/ChineseChess/56Tile/ThreePlayer/Handler"
-import "github.com/littletrainee/MahJong/ConsoleVersion/ChineseChess/56Tile/FourPlayer/Handler"
+// import "github.com/littletrainee/MahJong/ConsoleVersion/ChineseChess/56Tile/FourPlayer/Handler"
+
+import "github.com/littletrainee/MahJong/ConsoleVersion/ChineseChess/64Tile/TwoPlayer/Handler"
 
 func main() {
 	var handler Handler.Handler

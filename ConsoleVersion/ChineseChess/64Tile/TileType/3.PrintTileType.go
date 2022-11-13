@@ -5,18 +5,22 @@ import "fmt"
 func (tt *TileType) PrintTileType() {
 	fmt.Println("牌型        台數")
 	fmt.Println("---------------")
-	tt.TenHou()
+	tt.Ten_DiOrNinHou()
 	tt.TenPai()
 	tt.Bookmaker()
+	tt.EightGenerals()
+	if !tt.iseightgenerals.Get() {
+		tt.FiveSoldier()
+	}
 	tt.ContinueToBookmaker()
 	tt.OnlyOrNoGeneralAndSorider()
-	tt.ConcealedAndTsumo()
-	tt.AllOrHalfRequire()
-	tt.WinOnTheWallTail()
+	tt.TsumoOrRon()
 	tt.WinOnLastTile()
 	tt.SameKind()
 	if tt.eye.Get() != "4pair" {
-		tt.AllPaired()
+		if !tt.iseightgenerals.Get() {
+			tt.AllPaired()
+		}
 		tt.TwoKang()
 		tt.TwoDragonHug()
 		tt.OneDragon()
