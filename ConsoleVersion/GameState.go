@@ -31,6 +31,7 @@ func (gs *GameState) TurnTargetPlayer(target uint8) {
 	gs.GameTurn.Set(target - 1)
 }
 
+// turn to next round
 func (gs *GameState) NextRound(name string) {
 	if name == "Player 1" {
 		i := gs.GameRound.Get()

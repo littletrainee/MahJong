@@ -7,7 +7,7 @@ require (
 	github.com/littletrainee/ClearConsole v0.1.0
 	github.com/littletrainee/Delegate v0.1.0
 	github.com/littletrainee/GetSet v0.1.0
-	github.com/littletrainee/slices v0.1.6
+	github.com/littletrainee/slices v0.1.7
 )
 
 require (
