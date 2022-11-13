@@ -9,6 +9,7 @@ import (
 	"github.com/littletrainee/MahJong/ConsoleVersion/ChineseChess/56Tile/PrintWin"
 	"github.com/littletrainee/MahJong/ConsoleVersion/ChineseChess/56Tile/TileType"
 	"github.com/littletrainee/MahJong/ConsoleVersion/ChineseChess/56Tile/Wall"
+	"github.com/littletrainee/MahJong/Interface"
 )
 
 type Handler struct {
@@ -20,4 +21,5 @@ type Handler struct {
 	Winner           string
 	tt               TileType.TileType
 	PrintWin         PrintWin.PrintWin
+	Interface.IHandler
 }

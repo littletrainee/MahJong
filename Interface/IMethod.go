@@ -18,3 +18,8 @@ type IWin interface {
 type IWall interface {
 	IAppendToWall
 }
+
+type IHandler interface {
+	Start()
+	Update()
+}
