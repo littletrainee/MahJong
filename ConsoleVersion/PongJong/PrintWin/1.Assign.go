@@ -1,9 +1,9 @@
 package PrintWin
 
-import "github.com/littletrainee/MahJong/ConsoleVersion/PongJong/Player"
+import . "github.com/littletrainee/MahJong/ConsoleVersion/PongJong/Player"
 
 // assign value to PrintWin Property
-func (pw *PrintWin) Assign(thisplayer, otherplayer *Player.Player) {
+func (pw *PrintWin) Assign(thisplayer, otherplayer *Player) {
 	pw.name.Set(thisplayer.Name.Get())
 	pw.meld.Set(thisplayer.Meld.Get())
 	pw.istsumo.Set(thisplayer.IsTsumo.Get())

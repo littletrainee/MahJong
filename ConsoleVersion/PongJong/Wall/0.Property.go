@@ -4,8 +4,8 @@ import (
 	"math/rand"
 	"time"
 
-	"github.com/littletrainee/GetSet"
-	"github.com/littletrainee/MahJong/Interface"
+	. "github.com/littletrainee/GetSet"
+	. "github.com/littletrainee/MahJong/Interface"
 )
 
 func Init() {
@@ -13,7 +13,7 @@ func Init() {
 }
 
 type Wall struct {
-	Name GetSet.Type[string]
-	Wall GetSet.Type[[]string]
-	Interface.IWall
+	Name Type[string]
+	Wall Type[[]string]
+	IWall
 }

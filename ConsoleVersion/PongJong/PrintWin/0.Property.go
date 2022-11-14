@@ -1,13 +1,11 @@
 package PrintWin
 
-import (
-	"github.com/littletrainee/GetSet"
-)
+import . "github.com/littletrainee/GetSet"
 
 type PrintWin struct {
-	name    GetSet.Type[string]
-	hand    GetSet.Type[[]string]
-	meld    GetSet.Type[[][]string]
-	lastone GetSet.Type[string]
-	istsumo GetSet.Type[bool]
+	name    Type[string]
+	hand    Type[[]string]
+	meld    Type[[][]string]
+	lastone Type[string]
+	istsumo Type[bool]
 }

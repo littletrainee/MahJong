@@ -4,13 +4,13 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/littletrainee/MahJong/ConsoleVersion/PongJong/Wall"
+	. "github.com/littletrainee/MahJong/ConsoleVersion/PongJong/Wall"
 )
 
 func TestTenPaiCheck(t *testing.T) {
 	var (
 		p Player
-		w Wall.Wall
+		w Wall
 	)
 	w.CreateTile()
 	p.Hand.Set([]string{"rb", "rb", "rb", "gb", "gb", "gb", "bb", "bb", "bp"})

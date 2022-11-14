@@ -1,6 +1,6 @@
 package Player
 
-import "github.com/littletrainee/slices"
+import . "github.com/littletrainee/slices"
 
 // Make Pong Meld to Meld slice
 func (p *Player) MakePongMeld(otherplayer *Player) {
@@ -17,7 +17,7 @@ func (p *Player) MakePongMeld(otherplayer *Player) {
 	}
 	// Remove two element from temphand
 	for i := 0; i < 2; i++ {
-		index = slices.FindIndexOfElement(temphand, otherplayerriver[len(otherplayerriver)-1])
+		index = FindIndexOfElement(temphand, otherplayerriver[len(otherplayerriver)-1])
 		temphand = append(temphand[:index], temphand[index+1:]...)
 	}
 

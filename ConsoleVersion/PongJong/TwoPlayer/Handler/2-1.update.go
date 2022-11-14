@@ -24,24 +24,16 @@ func (h *Handler) update(p1, p2 *Player.Player) string {
 		if p2.Iswin.Get() {
 			return checkisron(p2, p1, h)
 		} else {
-			if !p2.IsRiiChi.Get() {
-				h.wg.Add(1)
-				go p2.CheckHasPongMeld(riverlastelement, h.wg)
-			}
+			h.wg.Add(1)
+			checkpongbygoroutine(p2, riverlastelement, h)
 			h.wg.Wait()
-			switch p2.AskMakePong() {
-			case "p":
-				p2.MakePongMeld(p1)
-				p2.HasPongMeld.Set(false)
-				goto TurnToNextPlayer
-			case "s":
-				p2.HasPongMeld.Set(false)
-				goto Drawcard
+			meldlength := getmeldlength(p2, p1)
+			if meldlength != len(p2.Meld.Get()) {
+				h.GameState.TurnTargetPlayer(p2.CodeNumber.Get())
+			} else {
+				p2.DrawCard(&h.Wall)
+				h.GameState.TurnNext()
 			}
-		Drawcard:
-			p2.DrawCard(&h.Wall)
-		TurnToNextPlayer:
-			h.GameState.TurnNext()
 		}
 	} else {
 		h.GameState.GameOn.Set(false)

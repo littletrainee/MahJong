@@ -1,8 +1,8 @@
 package Player
 
 import (
-	PJ "github.com/littletrainee/MahJong/ConsoleVersion/PongJong"
-	"github.com/littletrainee/slices"
+	. "github.com/littletrainee/MahJong/ConsoleVersion/PongJong"
+	. "github.com/littletrainee/slices"
 )
 
 // check player can riichi
@@ -36,14 +36,14 @@ func (p *Player) RiiChiCheck() []string {
 		cloneforpopone = append(cloneforpopone[:i], cloneforpopone[i+1:]...)
 
 		// try add one to array[4->5]
-		for _, probablytarget := range PJ.Tile.Get() {
+		for _, probablytarget := range Tile.Get() {
 			// reset removeonefromclone capacity and value
 			removeonefromclone = make([]string, len(cloneforpopone))
 			// clone from cloneforpopone to removeoonefromclone[4]
 			copy(removeonefromclone, cloneforpopone)
 			removeonefromclone = append(removeonefromclone, probablytarget)
 			if probablywin(removeonefromclone) {
-				if !slices.ContainsElement(probablywintile, probablytarget) {
+				if !ContainsElement(probablywintile, probablytarget) {
 					probablywintile = append(probablywintile, probablytarget)
 				}
 			}
