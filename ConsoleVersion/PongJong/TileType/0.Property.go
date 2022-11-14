@@ -5,6 +5,8 @@ import (
 )
 
 type TileType struct {
-	target GetSet.Type[string]
-	score  GetSet.Type[uint8]
+	yaku        GetSet.Type[string]
+	score       GetSet.Type[[]uint8]
+	colorlength GetSet.Type[uint8]
+	kindlength  GetSet.Type[uint8]
 }

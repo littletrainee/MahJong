@@ -2,7 +2,7 @@ package Player
 
 import wall "github.com/littletrainee/MahJong/ConsoleVersion/PongJong/Wall"
 
-// draw card from wall
+// draw card from wall to hand
 func (p *Player) DrawCard(wall *wall.Wall) {
 	// declare temp vairable
 	tempwall := wall.Wall.Get()

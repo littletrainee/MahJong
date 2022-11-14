@@ -16,5 +16,5 @@ func checkisron(thisplayer, otherplayer *Player.Player, h *Handler) string {
 func checkPongAndKang(otherplayerriver string, thisplayer *Player.Player, wg *sync.WaitGroup) {
 	wg.Add(1)
 	// pong
-	thisplayer.CheckPong(otherplayerriver, wg)
+	thisplayer.CheckHasPongMeld(otherplayerriver, wg)
 }

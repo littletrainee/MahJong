@@ -2,16 +2,16 @@ package TileType
 
 import "github.com/littletrainee/slices"
 
-func splitColorAndKind(temp []string) (int, int) {
-	var color, kind []string
+func splitColorAndKind(temp []string) (uint8, uint8) {
+	var color, kind []rune
 
 	for _, v := range temp {
-		if !slices.ContainsElement(color, string(v[0])) {
-			color = append(color, string(v[0]))
+		if !slices.ContainsElement(color, rune(v[0])) {
+			color = append(color, rune(v[0]))
 		}
-		if !slices.ContainsElement(kind, string(v[1])) {
-			kind = append(kind, string(v[1]))
+		if !slices.ContainsElement(kind, rune(v[1])) {
+			kind = append(kind, rune(v[1]))
 		}
 	}
-	return len(color), len(kind)
+	return uint8(len(color)), uint8(len(kind))
 }

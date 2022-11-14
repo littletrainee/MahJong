@@ -1,24 +1,27 @@
 package Player
 
 // Check meld
-func Ismeld(meld []string) bool {
-	meld1, meld2, meld3 := meld[0], meld[1], meld[2]
-	if meld1 == meld2 && meld2 == meld3 {
+func Ismeld(targetmeld []string) bool {
+	first, second, third := targetmeld[0], targetmeld[1], targetmeld[2]
+	if first == second && second == third {
 		return true
 	} else {
 		return false
 	}
 }
 
-func endgame(temphand []string) bool {
+// check target hand is forming
+func iswin(targetslice []string) bool {
+	// declare
 	var tempplayer Player
-	// sort temphand
-	tempplayer.Hand.Set(temphand)
+	// sort targetslice
+	tempplayer.Hand.Set(targetslice)
 	tempplayer.SortHand()
-	temphand = tempplayer.Hand.Get()
+	targetslice = tempplayer.Hand.Get()
 
+	// check 3-set is all meld
 	for i := 0; i < 9; i += 3 {
-		if !Ismeld([]string{temphand[i], temphand[i+1], temphand[i+2]}) {
+		if !Ismeld([]string{targetslice[i], targetslice[i+1], targetslice[i+2]}) {
 			break
 		}
 		if i == 6 {

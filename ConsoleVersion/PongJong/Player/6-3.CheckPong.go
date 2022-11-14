@@ -6,10 +6,11 @@ import (
 	"github.com/littletrainee/slices"
 )
 
-func (p *Player) CheckPong(otherplayerriverlastone string, wg *sync.WaitGroup) {
+// check player has pong meld in hand
+func (p *Player) CheckHasPongMeld(otherplayerriverlastone string, wg *sync.WaitGroup) {
 	defer wg.Done()
-	temp := p.Hand.Get()
-	if slices.ContainsElement(temp, otherplayerriverlastone) && slices.CountNumber(temp, otherplayerriverlastone) == 2 {
+	if slices.ContainsElement(p.Hand.Get(), otherplayerriverlastone) &&
+		slices.CountNumber(p.Hand.Get(), otherplayerriverlastone) >= 2 {
 		p.HasPongMeld.Set(true)
 	}
 }

@@ -32,7 +32,8 @@ func (h *Handler) Update() {
 	default:
 		h.tt = TileType.TileType{}
 	}
+	h.tt.SetYakuAndPoint()
 	if h.Winner != "Draw" {
-		h.tt.PrintTileType()
+		h.tt.Print()
 	}
 }

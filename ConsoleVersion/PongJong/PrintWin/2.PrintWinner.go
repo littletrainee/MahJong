@@ -8,6 +8,13 @@ import (
 )
 
 func (pw *PrintWin) Print() {
+	fmt.Printf("               %s\n\n", pw.name.Get())
+	switch len(pw.meld.Get()) {
+	case 1:
+		fmt.Print("  ")
+	case 0:
+		fmt.Print("     ")
+	}
 	for i, v := range pw.hand.Get() {
 		Player.Printonebyone(v, i, len(pw.hand.Get()), ", ")
 	}
@@ -21,7 +28,7 @@ func (pw *PrintWin) Print() {
 		}
 	}
 
-	fmt.Print("    ")
+	fmt.Print("       ")
 	CV.PrintRGB(pw.lastone.Get())
 	fmt.Printf("\n\n")
 }

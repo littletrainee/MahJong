@@ -5,7 +5,7 @@ import (
 	"strconv"
 )
 
-// ManualDiscard From Hand To River
+// Manual Discard From Hand To River
 func (p *Player) ManualDiscard() {
 	var (
 		keystring string

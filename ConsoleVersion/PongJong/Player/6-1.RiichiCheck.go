@@ -5,6 +5,7 @@ import (
 	"github.com/littletrainee/slices"
 )
 
+// check player can riichi
 func (p *Player) RiiChiCheck() []string {
 	var (
 		temphand           []string = p.Hand.Get()
@@ -13,6 +14,7 @@ func (p *Player) RiiChiCheck() []string {
 		removeonefromclone []string
 		probablywintile    []string
 	)
+	// append meld to temphand
 	if len(p.Meld.Get()) != 0 {
 		for _, v := range p.Meld.Get() {
 			temphand = append(temphand, v...)

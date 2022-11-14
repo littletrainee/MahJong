@@ -2,10 +2,11 @@ package Player
 
 import "github.com/littletrainee/slices"
 
+// Make Pong Meld to Meld slice
 func (p *Player) MakePongMeld(otherplayer *Player) {
 	var (
 		temphand         []string   = p.Hand.Get()
-		tempmeldlist     [][]string = p.Meld.Get()
+		tempmeldslices   [][]string = p.Meld.Get()
 		tempmeld         []string
 		otherplayerriver []string = otherplayer.River.Get()
 		index            int
@@ -24,11 +25,11 @@ func (p *Player) MakePongMeld(otherplayer *Player) {
 	otherplayerriver = otherplayerriver[:len(otherplayerriver)-1]
 
 	// append tempmeld to tempmeldlist
-	tempmeldlist = append(tempmeldlist, tempmeld)
+	tempmeldslices = append(tempmeldslices, tempmeld)
 
 	// Set each value
 	p.HasPongMeld.Set(false)
 	otherplayer.River.Set(otherplayerriver)
 	p.Hand.Set(temphand)
-	p.Meld.Set(tempmeldlist)
+	p.Meld.Set(tempmeldslices)
 }

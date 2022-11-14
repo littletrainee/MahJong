@@ -1,6 +1,6 @@
 package Player
 
-// check Tsumo
+// check player is Tsumo
 func (p *Player) TsumoCheck() {
 	// declare
 	var temphand []string = p.Hand.Get()
@@ -13,5 +13,5 @@ func (p *Player) TsumoCheck() {
 	}
 
 	// check is win
-	p.Iswin.Set(endgame(temphand))
+	p.Iswin.Set(iswin(temphand))
 }

@@ -4,7 +4,7 @@ import (
 	"sync"
 )
 
-// Check Ron
+// Check player is Ron
 func (p *Player) RonCheck(otherplayer *Player, wg *sync.WaitGroup) {
 	defer wg.Done()
 	// declare
@@ -17,9 +17,9 @@ func (p *Player) RonCheck(otherplayer *Player, wg *sync.WaitGroup) {
 		}
 	}
 
-	// append river last to temp
+	// append river last one to temphand
 	temphand = append(temphand, otherplayer.River.Get()[len(otherplayer.River.Get())-1])
 
 	// check is win
-	p.Iswin.Set(endgame(temphand))
+	p.Iswin.Set(iswin(temphand))
 }

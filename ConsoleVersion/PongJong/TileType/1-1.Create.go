@@ -1,8 +1,6 @@
 package TileType
 
 import (
-	"strconv"
-
 	"github.com/littletrainee/GetSet"
 	"github.com/littletrainee/MahJong/ConsoleVersion/PongJong/Player"
 	"github.com/littletrainee/slices"
@@ -28,13 +26,15 @@ func (tt *TileType) Create(thisplayer, otherplayer *Player.Player) {
 	temp = slices.RemoveDuplicate(temp)
 
 	if len(temp) == 1 {
-		tt.target.Set(strconv.Itoa(len(temp)) + "Color" +
-			strconv.Itoa(len(temp)) + "Kind")
+		tt.colorlength.Set(1)
+		tt.kindlength.Set(1)
 	} else if len(temp) == 9 {
-		tt.target.Set(strconv.Itoa(len(temp)/3) + "Color" +
-			strconv.Itoa(len(temp)) + "Kind")
+		tt.colorlength.Set(3)
+		tt.kindlength.Set(9)
 	} else {
 		color, kind := splitColorAndKind(temp)
-		tt.target.Set(strconv.Itoa(color) + "Color" + strconv.Itoa(kind) + "Kind")
+		tt.colorlength.Set(color)
+		tt.kindlength.Set(kind)
+
 	}
 }

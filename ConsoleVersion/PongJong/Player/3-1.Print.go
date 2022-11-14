@@ -2,6 +2,7 @@ package Player
 
 import "fmt"
 
+// Print Player hand, meld and river
 func (p *Player) Print() {
 	fmt.Printf("%s's Hand: ", p.Name.Get())
 	for i, v := range p.Hand.Get() {

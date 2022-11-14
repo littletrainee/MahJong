@@ -9,19 +9,19 @@ import (
 func (p *Player) AskMakePong() string {
 	var (
 		key            string
-		probalbyselect string
-		pong           bool = p.HasPongMeld.Get()
+		probablyoption string
+		haspongmeld    bool = p.HasPongMeld.Get()
 	)
 
-	if pong { // no chi, pong, no kang
+	if haspongmeld {
 		fmt.Print("Want to Pong?(p/s)")
-		probalbyselect = "ps"
+		probablyoption = "ps"
 	} else {
 		return "s"
 	}
 	for {
 		fmt.Scanln(&key)
-		if !strings.Contains(probalbyselect, key) {
+		if !strings.Contains(probablyoption, key) {
 			fmt.Printf("%T", key)
 			fmt.Print("Wrong Enter Please Renter:")
 			key = ""

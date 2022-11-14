@@ -2,7 +2,7 @@ package Player
 
 import "fmt"
 
-func asktenpai() string {
+func (p *Player) AskDeclareRiiChi() {
 	var key string
 	fmt.Printf("Do You Want Declare Riichi?(y/n)")
 	for {
@@ -14,5 +14,7 @@ func asktenpai() string {
 			break
 		}
 	}
-	return key
+	if key == "y" {
+		p.IsRiiChi.Set(true)
+	}
 }

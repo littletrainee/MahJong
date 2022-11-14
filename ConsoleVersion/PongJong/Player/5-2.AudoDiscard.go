@@ -1,5 +1,6 @@
 package Player
 
+// auto discard from hand to river
 func (p *Player) AutoDiscard() {
 	var (
 		temphand  []string = p.Hand.Get()

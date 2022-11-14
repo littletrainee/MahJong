@@ -26,7 +26,7 @@ func (h *Handler) update(p1, p2 *Player.Player) string {
 		} else {
 			if !p2.IsRiiChi.Get() {
 				h.wg.Add(1)
-				go p2.CheckPong(riverlastelement, h.wg)
+				go p2.CheckHasPongMeld(riverlastelement, h.wg)
 			}
 			h.wg.Wait()
 			switch p2.AskMakePong() {
